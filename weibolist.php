@@ -36,9 +36,24 @@ function refresh_mentions_messages($c, $count){
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Mini Away Day in Xi'an</title>
+<script src="jquery-1.7.1.min.js"></script>
+<script>
+	$(document).ready(function() {
+		setInterval(function() {
+			$.ajax({
+				url: '/liveshow/weibolist.php',
+				success: function(data) {
+					console.log('get data');
+					$('body').html(data);
+				}
+			})
+		}, 30000);
+	});
+</script>
 </head>
 
 <body>
+	
 	<?php 
 		refresh_mentions_messages($c, 10);
 	?>
